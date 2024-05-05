@@ -6,7 +6,7 @@ dotenvConfig({ path: '.development.env' });
 const config = {
   type: 'postgres',
   database: process.env.DB_NAME,
-  host: 'host.docker.internal',
+  host: process.env.DB_HOST, ///// /////
   port: process.env.DB_PORT,
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
@@ -14,8 +14,8 @@ const config = {
   migrations: ['dist/migrations/*{.ts,.js}'],
   autoloadEntities: true,
   logging: true,
-  synchronize: true,
-  dropSchema: true,
+  synchronize: false,
+  dropSchema: false,
 };
 
 export default registerAs('typeorm', () => config);
